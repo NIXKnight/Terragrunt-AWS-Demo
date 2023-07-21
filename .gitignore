@@ -1,0 +1,11 @@
+terragrunt.iml
+.terraform
+.vscode
+*.tfstate
+*.tfstate.backup
+*.out
+.terragrunt-cache
+.terraform.lock.hcl
+terragrunt
+.terragrunt-module-manifest
+.terragrunt-source-version
