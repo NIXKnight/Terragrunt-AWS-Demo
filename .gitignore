@@ -9,3 +9,4 @@ terragrunt.iml
 terragrunt
 .terragrunt-module-manifest
 .terragrunt-source-version
+!.keep
