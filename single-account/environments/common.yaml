@@ -1,0 +1,7 @@
+aws:
+  region: us-east-1
+  state:
+    bucket_name: nixknight-terragrunt-demo-state
+    file_name: state.json
+tags:
+  Managed-By: Terragrunt
