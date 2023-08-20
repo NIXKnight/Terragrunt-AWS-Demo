@@ -1,8 +1,23 @@
 locals {
-  vars     = yamldecode(file("common.yaml"))
-  env_vars = yamldecode(file("${path_relative_to_include()}/../environment.yaml"))
+  common_vars       = yamldecode(file("common.yaml"))
+  state_bucket_name = yamldecode(file("global/environment.yaml")).module_config.state_bucket.bucket
+  dynamodb_table    = yamldecode(file("global/environment.yaml")).module_config.state_locking_table.name
+}
 
-  environment_tags = local.env_vars.tags
+# Configure Terragrunt to store state files in an S3 bucket
+remote_state {
+  backend = "s3"
+  config = {
+    encrypt        = true
+    bucket         = local.state_bucket_name
+    key            = "${path_relative_to_include()}/state.json"
+    region         = local.common_vars.aws.region
+    dynamodb_table = local.dynamodb_table
+  }
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
 }
 
 # Setup provider
@@ -15,7 +30,7 @@ variable "aws_provider_default_tags" {
 }
 
 provider "aws" {
-  region = "${local.vars.aws.region}"
+  region = "${local.common_vars.aws.region}"
    default_tags {
     tags = var.aws_provider_default_tags
   }
@@ -24,5 +39,5 @@ EOF
 }
 
 inputs = {
-  aws_provider_default_tags = merge(local.vars.tags, local.environment_tags)
+  aws_provider_default_tags = local.common_vars.tags
 }

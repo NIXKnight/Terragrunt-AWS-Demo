@@ -1,7 +1,15 @@
+terraform:
+  remote_modules:
+    s3:
+      source: git::git@github.com:terraform-aws-modules/terraform-aws-s3-bucket.git///
+      version: v3.14.1
+    kms:
+      source: git::git@github.com:terraform-aws-modules/terraform-aws-kms.git///
+      version: v1.5.0
+    dynamodb:
+      source: git::git@github.com:terraform-aws-modules/terraform-aws-dynamodb-table.git///
+      version: v3.3.0
 aws:
   region: us-east-1
-  state:
-    bucket_name: nixknight-terragrunt-demo-state
-    file_name: state.json
 tags:
   Managed-By: Terragrunt
