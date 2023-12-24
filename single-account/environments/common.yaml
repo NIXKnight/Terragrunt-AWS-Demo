@@ -9,6 +9,9 @@ terraform:
     dynamodb:
       source: git::git@github.com:terraform-aws-modules/terraform-aws-dynamodb-table.git///
       version: v3.3.0
+    vpc:
+      source: git::git@github.com:terraform-aws-modules/terraform-aws-vpc.git///
+      version: v5.4.0
 aws:
   region: us-east-1
 tags:
