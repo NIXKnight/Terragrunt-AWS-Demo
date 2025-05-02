@@ -7,15 +7,6 @@ include "s3_bucket" {
   expose = true
 }
 
-dependency "state_bucket_kms_key" {
-  config_path = "../state_bucket_kms_key"
-
-  mock_outputs = {
-    key_arn = "mock_arn"
-  }
-  mock_outputs_allowed_terraform_commands = ["init", "plan"]
-}
-
 locals {
   module_vars = include.s3_bucket.locals.env_vars.module_config.state_bucket
 }
@@ -23,15 +14,6 @@ locals {
 inputs = merge(
   local.module_vars,
   {
-    server_side_encryption_configuration = {
-      rule = {
-        apply_server_side_encryption_by_default = {
-          kms_master_key_id  = "${dependency.state_bucket_kms_key.outputs.key_arn}"
-          sse_algorithm      = "aws:kms"
-        }
-      }
-    }
-
     attach_policy = true
     policy        = jsonencode(
       yamldecode(
