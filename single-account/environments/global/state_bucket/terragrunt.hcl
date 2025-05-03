@@ -15,7 +15,7 @@ inputs = merge(
   local.module_vars,
   {
     attach_policy = true
-    policy        = jsonencode(
+    policy = jsonencode(
       yamldecode(
         templatefile(
           "${get_repo_root()}/templates/policies/state_bucket_policy.yaml.tftpl",
