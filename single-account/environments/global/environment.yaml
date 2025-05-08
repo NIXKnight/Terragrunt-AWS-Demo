@@ -2,13 +2,6 @@ tags: &tags
   Environment: Global
 
 module_config:
-  state_bucket_kms_key:
-    description: "AWS KMS key for Terraform State bucket"
-    enable_key_rotation: false
-    aliases:
-      - KMS-Key-S3-State
-    tags:
-      <<: *tags
   state_bucket:
     bucket: nixknight-terragrunt-demo-state
     versioning:

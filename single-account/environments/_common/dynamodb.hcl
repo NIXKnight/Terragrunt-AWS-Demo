@@ -1,5 +1,5 @@
 locals {
-  common_vars = yamldecode(file("${find_in_parent_folders()}/../common.yaml")).terraform.remote_modules.dynamodb
+  common_vars = yamldecode(file("${get_repo_root()}/single-account/environments/common.yaml")).terraform.remote_modules.dynamodb
   env_vars    = yamldecode(file("${path_relative_to_include()}/../environment.yaml"))
 
   module_source_url = local.common_vars.source
