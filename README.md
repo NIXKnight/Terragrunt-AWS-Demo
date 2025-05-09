@@ -1,4 +1,4 @@
-## **Terragrunt AWS Demo**
+## **Terragrunt Demo**
 
 This repo is where I brain dump Terragrunt. You are welcome to suggest changes to this repo.
 
