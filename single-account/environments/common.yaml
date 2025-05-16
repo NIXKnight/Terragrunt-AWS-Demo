@@ -9,6 +9,9 @@ terraform:
     dynamodb:
       source: git::git@github.com:terraform-aws-modules/terraform-aws-dynamodb-table.git///
       version: v3.3.0
+    proxmox_vm:
+      source: git::git@github.com:NIXKnight/OpenTofu-Module-Proxmox-VM.git///
+      version: main
 aws:
   region: us-east-1
 tags:

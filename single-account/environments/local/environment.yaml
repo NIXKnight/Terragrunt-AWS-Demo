@@ -1,0 +1,27 @@
+common_vm_config: &common_vm_config
+  cores: 2
+  memory: 2048
+  disk_size: 40
+  disk_storage: "storage"
+  ci_storage: "local"
+  tpm_storage: "local"
+  template_vm_id: 9999 # Debian 12 VM template
+
+module_config:
+  proxmox_vm:
+    vms:
+      vault-server:
+        name: "vault-server"
+        vmid: 111
+        description: "Vault Server"
+        <<: *common_vm_config
+      server-01:
+        name: "server-01"
+        vmid: 112
+        description: "Server 01"
+        <<: *common_vm_config
+      server-02:
+        name: "server-02"
+        vmid: 113
+        description: "Server 02"
+        <<: *common_vm_config
