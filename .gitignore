@@ -11,5 +11,6 @@ terragrunt
 .terragrunt-source-version
 !.keep
 .envrc
+.terraformrc
 backend.tf
 provider.tf

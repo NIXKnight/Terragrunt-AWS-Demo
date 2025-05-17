@@ -24,13 +24,13 @@ dependency "proxmox_vms" {
 }
 
 inputs = {
-  zone_id = dependency.local_child_zone.outputs.zone_id
+  zone_id = dependency.local_child_zone.outputs.route53_zone_zone_id["local.nixknight.com"]
   records = [
     {
       name    = "vault"
       type    = "A"
       ttl     = 300
-      records = dependency.proxmox_vms.outputs.vm_ips["vault-server"]
+      records = [dependency.proxmox_vms.outputs.vm_ips["vault-server"]]
     }
   ]
 }
