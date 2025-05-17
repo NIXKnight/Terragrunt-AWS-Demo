@@ -14,16 +14,11 @@ dependency "parent_zone" {
     }
 }
 
-dependency "local_child_zone" {
-  config_path = "${get_repo_root()}/single-account/environments/local/route53/child_zone"
+dependency "proxmox_vms" {
+  config_path = "${get_repo_root()}/single-account/environments/local/proxmox_vms"
   mock_outputs = {
-    route53_zone_name_servers = {
-      "local.nixknight.com" = [
-        "<ns1>",
-        "<ns2>",
-        "<ns3>",
-        "<ns4>"
-      ]
+    vm_ips = {
+      "vault-server" = "<ip_address>"
     }
   }
 }
@@ -32,10 +27,10 @@ inputs = {
   zone_id = dependency.parent_zone.outputs.zone_id
   records = [
     {
-      name    = "local"
-      type    = "NS"
+      name    = "vault.local"
+      type    = "A"
       ttl     = 300
-      records = dependency.local_child_zone.outputs.route53_zone_name_servers["local.nixknight.com"]
+      records = [dependency.proxmox_vms.outputs.vm_ips["vault-server"]]
     }
   ]
 }
