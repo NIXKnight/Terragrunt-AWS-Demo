@@ -17,3 +17,5 @@ module_config:
       - { name: LockID, type: S }
     tags:
       <<: *tags
+  parent_zone:
+    parent_domain_name: nixknight.com

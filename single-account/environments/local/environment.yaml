@@ -1,3 +1,6 @@
+aws_tags: &aws_tags
+  Environment: Local
+
 common_vm_config: &common_vm_config
   cores: 2
   memory: 2048
@@ -8,20 +11,29 @@ common_vm_config: &common_vm_config
   template_vm_id: 9999 # Debian 12 VM template
 
 module_config:
+  child_zone:
+    zones:
+      local.nixknight.com:
+        name: "local.nixknight.com"
+        tags:
+          <<: *aws_tags
   proxmox_vm:
     vms:
       vault-server:
         name: "vault-server"
         vmid: 111
         description: "Vault Server"
+        tags: "vault"
         <<: *common_vm_config
       server-01:
         name: "server-01"
         vmid: 112
         description: "Server 01"
+        tags: "iam_role_user"
         <<: *common_vm_config
       server-02:
         name: "server-02"
         vmid: 113
         description: "Server 02"
+        tags: "iam_role_user"
         <<: *common_vm_config

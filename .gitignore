@@ -10,3 +10,6 @@ terragrunt
 .terragrunt-module-manifest
 .terragrunt-source-version
 !.keep
+.envrc
+backend.tf
+provider.tf

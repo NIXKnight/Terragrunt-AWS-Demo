@@ -9,6 +9,12 @@ terraform:
     dynamodb:
       source: git::git@github.com:terraform-aws-modules/terraform-aws-dynamodb-table.git///
       version: v3.3.0
+    route53_zones:
+      source: git::git@github.com:terraform-aws-modules/terraform-aws-route53.git//modules/zones
+      version: v5.0.0
+    route53_records:
+      source: git::git@github.com:terraform-aws-modules/terraform-aws-route53.git//modules/records
+      version: v5.0.0
     proxmox_vm:
       source: git::git@github.com:NIXKnight/OpenTofu-Module-Proxmox-VM.git///
       version: main
